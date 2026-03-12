@@ -38,9 +38,8 @@
             <div class="flex items-center gap-4">
                 <h1 class="font-bold text-xl flex items-center gap-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    Analisis Soal Pro v2.6
+                    Analisis Soal Pro v2.7
                 </h1>
-                <!-- INDIKATOR KONEKSI DATABASE -->
                 <div id="db-status-badge" class="flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-800 border border-indigo-700">
                     <div id="db-status-dot" class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div>
                     <span id="db-status-text" class="text-[10px] font-bold uppercase tracking-wider text-indigo-300">Database Terputus</span>
@@ -62,22 +61,22 @@
         </div>
     </nav>
 
-    <!-- PROJECT INFO BAR (No Print) -->
+    <!-- PROJECT INFO BAR -->
     <div id="project-manager" class="bg-indigo-50 border-b border-indigo-200 p-2 no-print">
         <div class="max-w-7xl mx-auto flex items-center gap-3">
             <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Projek Aktif:</span>
             <input id="current-project-name" type="text" value="Ulangan Harian Semester Ganjil" class="bg-transparent border-b border-indigo-300 font-bold text-indigo-800 focus:outline-none focus:border-indigo-600 text-sm flex-1">
-            <span id="save-status" class="text-[9px] text-slate-400 italic">Data tersimpan secara lokal</span>
+            <span id="save-status" class="text-[9px] text-slate-400 italic">Data siap disinkronkan</span>
         </div>
     </div>
 
-    <!-- TAB MENU (No Print) -->
+    <!-- TAB MENU -->
     <div class="bg-slate-200/50 border-b border-slate-300 no-print">
         <div class="max-w-7xl mx-auto flex overflow-x-auto">
             <button onclick="switchTab('tab-identitas')" id="btn-tab-identitas" class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 tab-active transition-all">1. Identitas & KKTP</button>
             <button onclick="switchTab('tab-soal')" id="btn-tab-soal" class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all">2. Struktur Soal</button>
             <button onclick="switchTab('tab-input')" id="btn-tab-input" class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all">3. Input Jawaban</button>
-            <button onclick="switchTab('tab-hasil')" id="btn-tab-hasil" class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all">4. Hasil Analisis & Dashboard</button>
+            <button onclick="switchTab('tab-hasil')" id="btn-tab-hasil" class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all">4. Hasil Analisis</button>
         </div>
     </div>
 
@@ -85,7 +84,7 @@
     <div id="modal-projects" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden flex flex-col shadow-2xl">
             <div class="p-4 border-b flex justify-between items-center bg-indigo-50">
-                <h3 class="font-bold text-indigo-900">Daftar Projek Tersimpan</h3>
+                <h3 class="font-bold text-indigo-900">Daftar Projek di Google Sheets</h3>
                 <button onclick="closeProjectModal()" class="text-slate-400 hover:text-rose-500 text-2xl font-bold">&times;</button>
             </div>
             <div id="project-list-container" class="overflow-y-auto p-4 space-y-2 flex-1">
@@ -97,78 +96,72 @@
         </div>
     </div>
 
-    <!-- APP CONTENT -->
+    <!-- CONTENT -->
     <div id="app" class="max-w-7xl mx-auto p-4 md:p-6">
-        
-        <!-- SECTION 1: IDENTITAS & KKTP -->
+        <!-- Identitas Content (Sama seperti sebelumnya) -->
         <div id="tab-identitas" class="tab-content space-y-6">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                 <h2 class="text-indigo-800 font-bold text-lg mb-4 border-b pb-2">Identitas Sekolah & Guru</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="space-y-2">
                         <label class="text-xs font-bold uppercase text-slate-500">Mata Pelajaran</label>
-                        <input id="meta-subject" type="text" value="Informatika" class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-subject" type="text" value="Informatika" class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                         <label class="text-xs font-bold uppercase text-slate-500">Nama Sekolah</label>
-                        <input id="meta-school" type="text" value="SMA Negeri 1 Indonesia" class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-school" type="text" value="SMA Negeri 1 Indonesia" class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                     </div>
                     <div class="space-y-2">
                         <label class="text-xs font-bold uppercase text-slate-500">Guru Mata Pelajaran</label>
-                        <input id="meta-teacher" type="text" value="Nama Guru, S.Pd." class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-teacher" type="text" value="Nama Guru, S.Pd." class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                         <label class="text-xs font-bold uppercase text-slate-500">NIP Guru</label>
-                        <input id="meta-teacher-nip" type="text" value="19xxxxxxxxxxxxxx" class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-teacher-nip" type="text" value="19xxxxxxxxxxxxxx" class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                     </div>
                     <div class="space-y-2">
                         <label class="text-xs font-bold uppercase text-slate-500">Kepala Sekolah</label>
-                        <input id="meta-headmaster" type="text" value="Nama Kepala Sekolah, M.Pd." class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-headmaster" type="text" value="Nama Kepala Sekolah, M.Pd." class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                         <label class="text-xs font-bold uppercase text-slate-500">NIP Kepala Sekolah</label>
-                        <input id="meta-headmaster-nip" type="text" value="19xxxxxxxxxxxxxx" class="w-full p-2 border rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                        <input id="meta-headmaster-nip" type="text" value="19xxxxxxxxxxxxxx" class="w-full p-2 border rounded-lg outline-none focus:ring-1 focus:ring-indigo-500">
                     </div>
                 </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                 <div class="flex justify-between items-center mb-4 border-b pb-2">
-                    <h2 class="text-indigo-800 font-bold text-lg">Konfigurasi KKTP (Dinamis)</h2>
-                    <button onclick="addKKTP()" class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-xs font-bold hover:bg-indigo-200 transition">+ Tambah Kriteria</button>
+                    <h2 class="text-indigo-800 font-bold text-lg">Konfigurasi KKTP</h2>
+                    <button onclick="addKKTP()" class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-xs font-bold hover:bg-indigo-200 transition">+ Tambah</button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm border-collapse">
                         <thead class="bg-slate-50">
                             <tr>
-                                <th class="p-2 border text-center w-40">Rentang (Min - Max)</th>
-                                <th class="p-2 border text-left">Deskripsi Kriteria</th>
+                                <th class="p-2 border text-center w-40">Rentang</th>
+                                <th class="p-2 border text-left">Deskripsi</th>
                                 <th class="p-2 border text-center w-24">Tuntas?</th>
                                 <th class="p-2 border text-center w-16 no-print">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="kktp-rows">
-                            <!-- Rows via JS -->
-                        </tbody>
+                        <tbody id="kktp-rows"></tbody>
                     </table>
-                    <p class="text-[10px] text-slate-400 mt-2">* Urutkan rentang dari yang terkecil ke terbesar.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SECTION 2: SOAL -->
+        <!-- Section 2: Soal -->
         <div id="tab-soal" class="tab-content hidden">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-indigo-800 font-bold text-lg">Konfigurasi Butir Soal</h2>
-                    <button onclick="addQuestion()" class="bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-800 transition shadow-lg">+ Tambah Soal</button>
+                    <button onclick="addQuestion()" class="bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:bg-indigo-800">+ Tambah</button>
                 </div>
-                <div id="question-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Questions via JS -->
-                </div>
+                <div id="question-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
             </div>
         </div>
 
-        <!-- SECTION 3: INPUT JAWABAN -->
+        <!-- Section 3: Input -->
         <div id="tab-input" class="tab-content hidden">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-indigo-800 font-bold text-lg">Input Jawaban Siswa</h2>
-                    <button onclick="addStudent()" class="bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-800 transition">+ Tambah Siswa</button>
+                    <button onclick="addStudent()" class="bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-800">+ Siswa</button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-[11px] border-collapse">
@@ -179,131 +172,59 @@
             </div>
         </div>
 
-        <!-- SECTION 4: HASIL ANALISIS & DASHBOARD -->
+        <!-- Section 4: Hasil -->
         <div id="tab-hasil" class="tab-content hidden print:block">
             <div class="space-y-8" id="print-area">
-                
-                <!-- Kop Cetak -->
                 <div class="text-center border-b-4 border-double border-slate-900 pb-4 mb-8">
                     <h1 class="text-xl font-bold uppercase">LAPORAN ANALISIS HASIL BELAJAR & KETERCAPAIAN (KKTP)</h1>
                     <h2 id="print-school" class="text-2xl font-black italic"></h2>
                     <p id="print-meta" class="text-sm font-medium"></p>
                 </div>
-
-                <!-- Dashboard Statistik (No Print in current section for clean table) -->
+                
                 <div class="no-print-section grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 no-print">
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-indigo-500 shadow-sm">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Rata-rata Kelas</p>
-                        <p id="dash-avg" class="text-2xl font-black text-indigo-900">-</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-emerald-500 shadow-sm">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Tertinggi</p>
-                        <p id="dash-high" class="text-2xl font-black text-emerald-600">-</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-rose-500 shadow-sm">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Terendah</p>
-                        <p id="dash-low" class="text-2xl font-black text-rose-600">-</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-amber-500 shadow-sm">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Persentase Tuntas</p>
-                        <p id="dash-pass" class="text-2xl font-black text-amber-600">-</p>
-                    </div>
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-indigo-500 shadow-sm"><p class="text-[10px] font-bold text-slate-400">RATA-RATA</p><p id="dash-avg" class="text-2xl font-black">-</p></div>
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-emerald-500 shadow-sm"><p class="text-[10px] font-bold text-slate-400">TERTINGGI</p><p id="dash-high" class="text-2xl font-black">-</p></div>
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-rose-500 shadow-sm"><p class="text-[10px] font-bold text-slate-400">TERENDAH</p><p id="dash-low" class="text-2xl font-black">-</p></div>
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-amber-500 shadow-sm"><p class="text-[10px] font-bold text-slate-400">KETUNTASAN</p><p id="dash-pass" class="text-2xl font-black">-</p></div>
                 </div>
 
-                <!-- Bagian A: Rekapitulasi -->
                 <div class="bg-white rounded-xl p-6 border card">
-                    <h3 class="text-lg font-bold mb-4 text-indigo-800 flex items-center gap-2">
-                        <span class="bg-indigo-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">A</span>
-                        Rekapitulasi Nilai & Ketercapaian
-                    </h3>
+                    <h3 class="font-bold mb-4 text-indigo-800">Rekapitulasi Nilai</h3>
                     <table class="w-full text-sm border-collapse border border-slate-300">
                         <thead class="bg-slate-50 uppercase text-[10px] font-bold">
-                            <tr>
-                                <th class="border border-slate-300 p-2 w-12 text-center">No</th>
-                                <th class="border border-slate-300 p-2 text-left">Nama Lengkap Siswa</th>
-                                <th class="border border-slate-300 p-2 text-center w-24">Nilai</th>
-                                <th class="border border-slate-300 p-2 text-left">Analisis Ketercapaian (KKTP)</th>
-                            </tr>
+                            <tr><th class="border p-2 w-12">No</th><th class="border p-2 text-left">Nama</th><th class="border p-2 w-24">Nilai</th><th class="border p-2 text-left">KKTP</th></tr>
                         </thead>
                         <tbody id="analysis-rekap-body"></tbody>
                     </table>
                 </div>
 
-                <!-- Bagian B: Analisis Butir Soal -->
                 <div class="bg-white rounded-xl p-6 border card">
-                    <h3 class="text-lg font-bold mb-4 text-indigo-800 flex items-center gap-2">
-                        <span class="bg-indigo-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">B</span>
-                        Laporan Analisis Kualitas Butir Soal
-                    </h3>
+                    <h3 class="font-bold mb-4 text-indigo-800">Analisis Butir Soal</h3>
                     <table class="w-full text-sm border-collapse border border-slate-300">
-                        <thead class="bg-slate-50 uppercase text-[10px] font-bold">
-                            <tr>
-                                <th class="border border-slate-300 p-2 w-12 text-center">No</th>
-                                <th class="border border-slate-300 p-2 text-left">Kode</th>
-                                <th class="border border-slate-300 p-2 text-center">Tipe</th>
-                                <th class="border border-slate-300 p-2 text-center">Indeks P</th>
-                                <th class="border border-slate-300 p-2 text-center">Klasifikasi</th>
-                                <th class="border border-slate-300 p-2 text-left">Keterangan</th>
-                            </tr>
+                        <thead class="bg-slate-50 text-[10px] font-bold uppercase">
+                            <tr><th class="border p-2 w-12">No</th><th class="border p-2">Kode</th><th class="border p-2">Indeks P</th><th class="border p-2">Keterangan</th></tr>
                         </thead>
                         <tbody id="analysis-item-body"></tbody>
                     </table>
                 </div>
 
-                <!-- Bagian C: Dashboard Individu (Grid Cards) -->
-                <div class="no-print-section bg-white rounded-xl p-6 border card no-print">
-                    <h3 class="text-lg font-bold mb-4 text-indigo-800 flex items-center gap-2">
-                        <span class="bg-indigo-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">C</span>
-                        Laporan Dashboard Analisis Per Individu
-                    </h3>
-                    <div id="individual-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Cards via JS -->
-                    </div>
-                </div>
-
-                <!-- Signature -->
                 <div class="mt-12 grid grid-cols-2 gap-20 text-center">
-                    <div>
-                        <p class="mb-24 text-sm">Mengetahui,<br>Kepala Sekolah</p>
-                        <p id="sign-headmaster" class="font-bold underline uppercase text-sm"></p>
-                        <p id="sign-headmaster-nip" class="text-xs"></p>
-                    </div>
-                    <div>
-                        <p id="sign-location-date" class="mb-24 text-sm"></p>
-                        <p id="sign-teacher" class="font-bold underline uppercase text-sm"></p>
-                        <p id="sign-teacher-nip" class="text-xs"></p>
-                    </div>
+                    <div><p class="mb-24 text-sm">Mengetahui,<br>Kepala Sekolah</p><p id="sign-headmaster" class="font-bold underline uppercase"></p><p id="sign-headmaster-nip" class="text-xs"></p></div>
+                    <div><p id="sign-location-date" class="mb-24 text-sm"></p><p id="sign-teacher" class="font-bold underline uppercase"></p><p id="sign-teacher-nip" class="text-xs"></p></div>
                 </div>
             </div>
-
-            <!-- Print Trigger -->
             <div class="mt-8 flex justify-center no-print">
-                <button onclick="handlePrint()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-12 py-3 rounded-xl font-bold shadow-xl flex items-center gap-2 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                    CETAK LAPORAN LENGKAP (PDF)
-                </button>
+                <button onclick="handlePrint()" class="bg-indigo-600 text-white px-12 py-3 rounded-xl font-bold shadow-xl">CETAK LAPORAN (PDF)</button>
             </div>
         </div>
     </div>
 
     <script>
-        /**
-         * =========================================================================
-         * PENGATURAN GOOGLE APPS SCRIPT (DATABASE CLOUD)
-         * =========================================================================
-         * Langkah-langkah menghubungkan:
-         * 1. Deploy Apps Script Anda sebagai Web App.
-         * 2. Salin URL Web App (berakhiran /exec).
-         * 3. Tempelkan URL tersebut di antara tanda kutip variabel WEB_APP_URL di bawah.
-         */
-        
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwsamFhxmWxWH0BXcopG5kcqTt97K-pvlYsriczNHEvY25uQJH1cRzq2zAUi1-6OXI/exec"; // <--- TEMPELKAN URL WEB APP ANDA DI SINI
+        // --- KONFIGURASI WEB APP ---
+        // MASUKKAN URL HASIL DEPLOY GOOGLE APPS SCRIPT ANDA DI SINI
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwsamFhxmWxWH0BXcopG5kcqTt97K-pvlYsriczNHEvY25uQJH1cRzq2zAUi1-6OXI/exec"; 
 
-        /**
-         * =========================================================================
-         */
-
-        // --- DATA STATE ---
+        // --- STATE ---
         let currentProjectId = "proj_" + Date.now();
         let questions = [
             { id: 1, label: 'S1', type: 'PG', key: 'A', weight: 1, options: ['A','B','C','D'] },
@@ -321,281 +242,24 @@
             { min: 81, max: 100, label: 'Sudah Mencapai Ketuntasan', pass: true }
         ];
 
-        // --- KONEKSI CHECKER ---
+        // --- CORE LOGIC ---
         function checkConnection() {
             const dot = document.getElementById('db-status-dot');
             const text = document.getElementById('db-status-text');
-            const badge = document.getElementById('db-status-badge');
-
-            if (WEB_APP_URL && WEB_APP_URL.trim() !== "") {
-                dot.classList.remove('bg-rose-500', 'animate-pulse');
-                dot.classList.add('bg-emerald-500');
+            if (WEB_APP_URL && WEB_APP_URL.startsWith("http")) {
+                dot.classList.replace('bg-rose-500', 'bg-emerald-500');
                 text.innerText = "Database Terhubung";
-                text.classList.remove('text-indigo-300');
-                text.classList.add('text-emerald-300');
-                badge.classList.remove('bg-indigo-800');
-                badge.classList.add('bg-emerald-900/30', 'border-emerald-700');
-            } else {
-                dot.classList.add('bg-rose-500', 'animate-pulse');
-                dot.classList.remove('bg-emerald-500');
-                text.innerText = "Database Terputus";
-                text.classList.add('text-indigo-300');
-                text.classList.remove('text-emerald-300');
-                badge.classList.add('bg-indigo-800');
-                badge.classList.remove('bg-emerald-900/30', 'border-emerald-700');
             }
         }
 
-        // --- NAVIGATION ---
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            document.querySelectorAll('nav + div + div button').forEach(btn => btn.classList.remove('tab-active'));
-            document.getElementById('btn-' + tabId).classList.add('tab-active');
-            renderAll();
-        }
-
-        // --- LOGIC KKTP ---
-        function addKKTP() {
-            kktp.push({ min: 0, max: 0, label: 'Kriteria Baru', pass: false });
-            renderKKTP();
-        }
-
-        function removeKKTP(index) {
-            if(kktp.length > 1) {
-                kktp.splice(index, 1);
-                renderKKTP();
-            }
-        }
-
-        function renderKKTP() {
-            const container = document.getElementById('kktp-rows');
-            container.innerHTML = kktp.map((k, i) => `
-                <tr>
-                    <td class="p-2 border text-center flex items-center justify-center gap-1">
-                        <input type="number" value="${k.min}" onchange="kktp[${i}].min=Number(this.value)" class="w-14 p-1 border rounded text-center">
-                        <span>-</span>
-                        <input type="number" value="${k.max}" onchange="kktp[${i}].max=Number(this.value)" class="w-14 p-1 border rounded text-center">
-                    </td>
-                    <td class="p-2 border">
-                        <input type="text" value="${k.label}" onchange="kktp[${i}].label=this.value" class="w-full p-1 border rounded">
-                    </td>
-                    <td class="p-2 border text-center">
-                        <input type="checkbox" ${k.pass ? 'checked' : ''} onchange="kktp[${i}].pass=this.checked; renderAnalysis();" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500 rounded">
-                    </td>
-                    <td class="p-2 border text-center no-print">
-                        <button onclick="removeKKTP(${i})" class="text-rose-400 hover:text-rose-600 font-bold">×</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        // --- LOGIC PERHITUNGAN ---
-        function calculateItemScore(studentAns, q) {
-            if (studentAns === undefined || studentAns === null || studentAns === '') return 0;
-            if (q.type === 'PG' || q.type === 'BS') return studentAns === q.key ? q.weight : 0;
-            if (q.type === 'PGK') {
-                if (!Array.isArray(studentAns)) return 0;
-                const keys = q.key || [];
-                if (keys.length === 0) return 0;
-                const correctSelected = studentAns.filter(a => keys.includes(a)).length;
-                const wrongSelected = studentAns.filter(a => !keys.includes(a)).length;
-                const score = ((correctSelected - wrongSelected) / keys.length) * q.weight;
-                return Math.max(0, score);
-            }
-            if (q.type === 'Uraian') return (Number(studentAns) / (q.max || 1)) * q.weight;
-            return 0;
-        }
-
-        function getStudentFinalScore(student) {
-            let totalEarned = 0, totalWeight = 0;
-            questions.forEach(q => {
-                totalEarned += calculateItemScore(student.answers[q.id], q);
-                totalWeight += q.weight;
-            });
-            return totalWeight > 0 ? (totalEarned / totalWeight) * 100 : 0;
-        }
-
-        function getKKTPInfo(score) {
-            return kktp.find(k => score >= k.min && score <= k.max) || { label: 'Di luar rentang', pass: false };
-        }
-
-        // --- RENDERERS ---
-        function renderAll() {
-            renderKKTP();
-            renderQuestionGrid();
-            renderAnswerTable();
-            renderAnalysis();
-            updatePrintInfo();
-            checkConnection();
-        }
-
-        function renderQuestionGrid() {
-            const container = document.getElementById('question-grid');
-            if (!container) return;
-            container.innerHTML = questions.map((q, i) => `
-                <div class="p-4 border rounded-xl bg-slate-50 relative group shadow-sm transition hover:shadow-md">
-                    <button onclick="deleteQuestion(${q.id})" class="absolute top-2 right-2 text-rose-300 hover:text-rose-600 font-bold opacity-0 group-hover:opacity-100 transition">Hapus</button>
-                    <div class="flex gap-2 mb-3">
-                        <input value="${q.label}" onchange="questions[${i}].label=this.value" class="w-16 border rounded p-1 font-bold text-indigo-700 bg-white">
-                        <select onchange="updateQuestionType(${i}, this.value)" class="flex-1 border rounded p-1 text-xs bg-white">
-                            <option value="PG" ${q.type==='PG'?'selected':''}>Pilihan Ganda</option>
-                            <option value="PGK" ${q.type==='PGK'?'selected':''}>PG Kompleks</option>
-                            <option value="BS" ${q.type==='BS'?'selected':''}>Benar/Salah</option>
-                            <option value="Uraian" ${q.type==='Uraian'?'selected':''}>Uraian</option>
-                        </select>
-                    </div>
-                    ${q.type !== 'Uraian' ? `
-                    <div class="mb-2">
-                        <div class="flex flex-wrap gap-1">
-                            ${(q.options || []).map(opt => `<button onclick="toggleKey(${i}, '${opt}')" class="w-7 h-7 border rounded text-[10px] font-bold transition ${(Array.isArray(q.key) ? q.key.includes(opt) : q.key === opt) ? 'bg-indigo-600 text-white' : 'bg-white text-slate-400'}">${opt}</button>`).join('')}
-                            <button onclick="addOption(${i})" class="w-7 h-7 border border-dashed rounded text-indigo-500 text-xs hover:bg-indigo-50 font-bold">+</button>
-                            <button onclick="removeOption(${i})" class="w-7 h-7 border border-dashed rounded text-rose-500 text-xs hover:bg-rose-50 font-bold">-</button>
-                        </div>
-                    </div>` : `
-                    <div class="mb-2">
-                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Skor Maksimal</label>
-                        <input type="number" value="${q.max || 10}" onchange="questions[${i}].max=Number(this.value)" class="w-full border rounded p-1 text-xs bg-white">
-                    </div>`}
-                    <div class="mt-2">
-                        <label class="block text-[9px] font-bold text-slate-400 uppercase">Bobot (Kontribusi %)</label>
-                        <input type="number" value="${q.weight}" onchange="questions[${i}].weight=Number(this.value)" class="w-full border rounded p-1 bg-white text-xs">
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderAnswerTable() {
-            const header = document.getElementById('answer-header');
-            if (!header) return;
-            header.innerHTML = `<tr><th class="p-2 border sticky left-0 bg-slate-100 z-10 w-48 text-left">Nama Siswa</th>` + 
-                questions.map(q => `<th class="p-2 border text-center font-bold">${q.label}</th>`).join('') + `</tr>`;
-            const rows = document.getElementById('answer-rows');
-            rows.innerHTML = students.map((s, si) => `
-                <tr class="hover:bg-indigo-50/30">
-                    <td class="p-1 border sticky left-0 bg-white z-10 uppercase font-bold"><input value="${s.name}" onchange="students[${si}].name=this.value.toUpperCase(); renderAnalysis();" class="w-full p-1 border-none focus:ring-1 focus:ring-indigo-300 rounded"></td>
-                    ${questions.map((q, qi) => {
-                        let content = ''; const ans = s.answers[q.id];
-                        if (q.type === 'PG' || q.type === 'BS') content = `<select onchange="updateAns(${si}, ${q.id}, this.value)" class="w-full border rounded p-1 text-xs bg-white text-center">${['', ...(q.options||[])].map(o => `<option value="${o}" ${ans===o?'selected':''}>${o}</option>`).join('')}</select>`;
-                        else if (q.type === 'PGK') content = `<div class="flex gap-0.5 justify-center">${(q.options||[]).map(l => `<button onclick="toggleAns(${si}, ${q.id}, '${l}')" class="w-5 h-5 text-[8px] rounded border font-bold ${(ans||[]).includes(l)?'bg-indigo-600 text-white':'bg-white text-slate-300'}">${l}</button>`).join('')}</div>`;
-                        else content = `<input type="number" value="${ans||0}" onchange="updateAns(${si}, ${q.id}, Number(this.value))" class="w-full border rounded text-center text-xs p-1 bg-white">`;
-                        return `<td class="p-1 border">${content}</td>`;
-                    }).join('')}
-                </tr>
-            `).join('');
-        }
-
-        function renderAnalysis() {
-            const rekap = document.getElementById('analysis-rekap-body');
-            const itemTable = document.getElementById('analysis-item-body');
-            const cards = document.getElementById('individual-cards');
-            if (!rekap || !cards || !itemTable) return;
-            rekap.innerHTML = itemTable.innerHTML = cards.innerHTML = '';
-
-            let totalClassScore = 0;
-            let highest = 0;
-            let lowest = 100;
-            let passCount = 0;
-
-            students.forEach((s, i) => {
-                const score = getStudentFinalScore(s);
-                const info = getKKTPInfo(score);
-                
-                totalClassScore += score;
-                if(score > highest) highest = score;
-                if(score < lowest) lowest = score;
-                if(info.pass) passCount++;
-
-                // Table Rekap
-                rekap.innerHTML += `
-                    <tr>
-                        <td class="border border-slate-300 p-2 text-center text-xs">${i+1}</td>
-                        <td class="border border-slate-300 p-2 font-bold uppercase text-xs">${s.name}</td>
-                        <td class="border border-slate-300 p-2 text-center font-black ${info.pass ? 'text-emerald-700' : 'text-rose-700'}">${score.toFixed(1)}</td>
-                        <td class="border border-slate-300 p-2 text-[10px] italic">
-                            <span class="font-bold text-slate-700">${info.label}</span>
-                        </td>
-                    </tr>
-                `;
-
-                // Individual Cards (Dashboard)
-                cards.innerHTML += `
-                    <div class="bg-white p-4 border rounded-xl shadow-sm border-l-4 ${info.pass ? 'border-l-emerald-500' : 'border-l-rose-500'} transition hover:shadow-md">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h4 class="font-bold text-xs uppercase text-slate-800">${s.name}</h4>
-                                <p class="text-[9px] text-slate-400 font-medium italic">${info.label}</p>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-2xl font-black ${info.pass ? 'text-emerald-600' : 'text-rose-600'}">${score.toFixed(1)}</span>
-                                <p class="text-[8px] font-bold uppercase tracking-wider text-slate-300">Skor Akhir</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-5 md:grid-cols-10 gap-1 mt-3">
-                            ${questions.map(q => {
-                                const itemScore = calculateItemScore(s.answers[q.id], q);
-                                const pct = (itemScore / q.weight) * 100;
-                                return `
-                                    <div class="flex flex-col items-center">
-                                        <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
-                                            <div class="h-full ${pct === 100 ? 'bg-emerald-500' : pct > 0 ? 'bg-amber-400' : 'bg-slate-300'}" style="width: ${pct}%"></div>
-                                        </div>
-                                        <span class="text-[7px] mt-1 font-bold text-slate-400 uppercase">${q.label}</span>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                        <div class="mt-4 pt-2 border-t flex justify-between items-center no-print">
-                            <span class="text-[8px] font-bold text-slate-400">DETAIL: ${questions.length} BUTIR SOAL</span>
-                            <button class="text-[9px] font-bold text-indigo-600 hover:underline">Lihat Detail &rarr;</button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Update Dashboard Stats
-            const avg = students.length > 0 ? totalClassScore / students.length : 0;
-            const passPct = students.length > 0 ? (passCount / students.length) * 100 : 0;
-            document.getElementById('dash-avg').innerText = avg.toFixed(1);
-            document.getElementById('dash-high').innerText = highest.toFixed(1);
-            document.getElementById('dash-low').innerText = students.length > 0 ? lowest.toFixed(1) : "0.0";
-            document.getElementById('dash-pass').innerText = passPct.toFixed(0) + "%";
-
-            // Analisis Butir Soal Kelas
-            questions.forEach((q, i) => {
-                let totalPoints = 0; 
-                students.forEach(s => totalPoints += calculateItemScore(s.answers[q.id], q));
-                const pIndex = (totalPoints / (students.length * q.weight)) || 0;
-                let classif = pIndex > 0.7 ? "Mudah" : pIndex < 0.3 ? "Sukar" : "Sedang";
-                
-                itemTable.innerHTML += `
-                    <tr>
-                        <td class="border border-slate-300 p-2 text-center text-xs">${i+1}</td>
-                        <td class="border border-slate-300 p-2 text-center font-bold text-xs">${q.label}</td>
-                        <td class="border border-slate-300 p-2 text-center text-[9px] uppercase font-bold text-slate-500">${q.type}</td>
-                        <td class="border border-slate-300 p-2 text-center font-mono text-xs">${pIndex.toFixed(2)}</td>
-                        <td class="border border-slate-300 p-2 text-center">
-                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${classif === 'Mudah' ? 'bg-sky-100 text-sky-700' : classif === 'Sukar' ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'}">${classif.toUpperCase()}</span>
-                        </td>
-                        <td class="border border-slate-300 p-2 text-[10px] italic text-slate-500">
-                            ${classif === 'Mudah' ? 'Jadikan Bonus' : classif === 'Sukar' ? 'Butuh Penguatan' : 'Asesmen Efektif'}
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        // --- CLOUD LOGIC ---
-        function saveProjectToCloud() {
-            if (!WEB_APP_URL || WEB_APP_URL.trim() === "") {
-                alert("Database Belum Terhubung!\n\nSilakan tempelkan URL Web App Google Apps Script Anda pada baris kode script untuk mengaktifkan fitur penyimpanan Cloud.");
-                return;
-            }
-
-            const saveStatus = document.getElementById('save-status');
-            saveStatus.innerText = "🔄 Menyimpan ke cloud...";
+        async function saveProjectToCloud() {
+            if (!WEB_APP_URL) return alert("Masukkan URL Web App terlebih dahulu!");
+            
+            const status = document.getElementById('save-status');
+            status.innerText = "🔄 Menghubungkan ke Cloud...";
             
             const payload = {
+                action: 'save',
                 projectId: currentProjectId,
                 projectName: document.getElementById('current-project-name').value,
                 meta: {
@@ -606,108 +270,216 @@
                     headmaster: document.getElementById('meta-headmaster').value,
                     headmasterNip: document.getElementById('meta-headmaster-nip').value
                 },
-                questions,
-                students,
-                kktp
+                questions, students, kktp
             };
 
-            if (typeof google !== 'undefined') {
-                google.script.run
-                    .withSuccessHandler(res => {
-                        saveStatus.innerText = "✅ Tersimpan: " + new Date().toLocaleTimeString();
-                    })
-                    .saveProject(JSON.stringify(payload));
-            } else {
-                saveStatus.innerText = "❌ Mode Demo (Tanpa GAS)";
-                console.log("Mock Save Payload:", payload);
-                alert("Aplikasi berjalan dalam Mode Demo.\nData tidak benar-benar tersimpan ke Google Sheets karena tidak dijalankan melalui lingkungan Apps Script.");
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if(result.status === 'success') {
+                    status.innerText = "✅ Tersimpan di Google Sheets pada " + new Date().toLocaleTimeString();
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (err) {
+                status.innerText = "❌ Gagal menyimpan";
+                alert("Error: " + err.message);
             }
         }
 
-        function openProjectModal() {
-            if (!WEB_APP_URL || WEB_APP_URL.trim() === "") {
-                alert("Database Belum Terhubung!\n\nFitur Buka Projek memerlukan koneksi ke Google Sheets.");
-                return;
-            }
-
+        async function openProjectModal() {
+            if (!WEB_APP_URL) return alert("Masukkan URL Web App!");
             document.getElementById('modal-projects').classList.remove('hidden');
             const container = document.getElementById('project-list-container');
-            container.innerHTML = '<p class="text-center p-10">Mengambil data...</p>';
+            container.innerHTML = '<p class="text-center p-10">Mengambil data dari Sheets...</p>';
 
-            if (typeof google !== 'undefined') {
-                google.script.run
-                    .withSuccessHandler(list => {
-                        if (!list || list.length === 0) {
-                            container.innerHTML = '<p class="text-center p-10">Belum ada projek tersimpan.</p>';
-                            return;
-                        }
-                        container.innerHTML = list.map(p => `
-                            <div class="p-3 border rounded-xl hover:bg-indigo-50 flex justify-between items-center transition cursor-pointer" onclick="loadProjectById('${p.id}')">
-                                <div>
-                                    <div class="font-bold text-indigo-900 uppercase text-xs">${p.name}</div>
-                                    <div class="text-[9px] text-slate-400 mt-1">${p.subject} | Update: ${new Date(p.updated).toLocaleString()}</div>
-                                </div>
-                                <div class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-bold text-[9px] uppercase tracking-wider">Muat Data</div>
+            try {
+                const response = await fetch(WEB_APP_URL + "?action=list");
+                const list = await response.json();
+                
+                if (list.length === 0) {
+                    container.innerHTML = '<p class="text-center p-10">Belum ada projek di Sheets.</p>';
+                } else {
+                    container.innerHTML = list.map(p => `
+                        <div class="p-3 border rounded-xl hover:bg-indigo-50 flex justify-between items-center cursor-pointer" onclick="loadProjectById('${p.id}')">
+                            <div>
+                                <div class="font-bold text-indigo-900 uppercase text-xs">${p.name}</div>
+                                <div class="text-[9px] text-slate-400 mt-1">${p.subject} | ${p.updated}</div>
                             </div>
-                        `).join('');
-                    })
-                    .listProjects();
+                            <div class="bg-indigo-600 text-white px-3 py-1 rounded-lg text-[9px] font-bold">MUAT</div>
+                        </div>
+                    `).join('');
+                }
+            } catch (err) {
+                container.innerHTML = '<p class="text-center text-rose-500 p-10">Koneksi Gagal</p>';
             }
         }
 
-        function loadProjectById(id) {
-            if (typeof google !== 'undefined') {
-                google.script.run
-                    .withSuccessHandler(json => {
-                        const data = JSON.parse(json);
-                        currentProjectId = data.projectId;
-                        document.getElementById('current-project-name').value = data.projectName;
-                        document.getElementById('meta-subject').value = data.meta.subject;
-                        document.getElementById('meta-school').value = data.meta.school;
-                        document.getElementById('meta-teacher').value = data.meta.teacher;
-                        document.getElementById('meta-teacher-nip').value = data.meta.teacherNip;
-                        document.getElementById('meta-headmaster').value = data.meta.headmaster;
-                        document.getElementById('meta-headmaster-nip').value = data.meta.headmasterNip;
-                        questions = data.questions;
-                        students = data.students;
-                        kktp = data.kktp;
-                        renderAll();
-                        closeProjectModal();
-                        switchTab('tab-identitas');
-                    })
-                    .loadProject(id);
+        async function loadProjectById(id) {
+            try {
+                const response = await fetch(WEB_APP_URL + "?action=load&id=" + id);
+                const data = await response.json();
+                
+                currentProjectId = data.projectId;
+                document.getElementById('current-project-name').value = data.projectName;
+                document.getElementById('meta-subject').value = data.meta.subject;
+                document.getElementById('meta-school').value = data.meta.school;
+                document.getElementById('meta-teacher').value = data.meta.teacher;
+                document.getElementById('meta-teacher-nip').value = data.meta.teacherNip;
+                document.getElementById('meta-headmaster').value = data.meta.headmaster;
+                document.getElementById('meta-headmaster-nip').value = data.meta.headmasterNip;
+                questions = data.questions;
+                students = data.students;
+                kktp = data.kktp;
+                
+                renderAll();
+                closeProjectModal();
+                switchTab('tab-identitas');
+            } catch (err) {
+                alert("Gagal memuat projek.");
             }
         }
 
+        // --- UI HELPERS (Fungsi tetap sama seperti sebelumnya) ---
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.querySelectorAll('nav + div + div button').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('btn-' + id).classList.add('tab-active');
+            renderAll();
+        }
+
+        function calculateItemScore(studentAns, q) {
+            if (!studentAns) return 0;
+            if (q.type === 'PG' || q.type === 'BS') return studentAns === q.key ? q.weight : 0;
+            if (q.type === 'PGK') {
+                const keys = q.key || [];
+                const correct = studentAns.filter(a => keys.includes(a)).length;
+                const wrong = studentAns.filter(a => !keys.includes(a)).length;
+                return Math.max(0, ((correct - wrong) / keys.length) * q.weight);
+            }
+            if (q.type === 'Uraian') return (Number(studentAns) / (q.max || 10)) * q.weight;
+            return 0;
+        }
+
+        function getStudentFinalScore(s) {
+            let earned = 0, total = 0;
+            questions.forEach(q => { earned += calculateItemScore(s.answers[q.id], q); total += q.weight; });
+            return total > 0 ? (earned / total) * 100 : 0;
+        }
+
+        function getKKTPInfo(score) {
+            return kktp.find(k => score >= k.min && score <= k.max) || { label: '-', pass: false };
+        }
+
+        function renderAll() {
+            renderKKTP(); renderQuestionGrid(); renderAnswerTable(); renderAnalysis(); updatePrintInfo(); checkConnection();
+        }
+
+        function renderKKTP() {
+            const container = document.getElementById('kktp-rows');
+            container.innerHTML = kktp.map((k, i) => `
+                <tr>
+                    <td class="p-2 border text-center flex items-center justify-center gap-1">
+                        <input type="number" value="${k.min}" onchange="kktp[${i}].min=Number(this.value)" class="w-14 border p-1 rounded">
+                        <span>-</span>
+                        <input type="number" value="${k.max}" onchange="kktp[${i}].max=Number(this.value)" class="w-14 border p-1 rounded">
+                    </td>
+                    <td class="p-2 border"><input type="text" value="${k.label}" onchange="kktp[${i}].label=this.value" class="w-full border p-1 rounded"></td>
+                    <td class="p-2 border text-center"><input type="checkbox" ${k.pass?'checked':''} onchange="kktp[${i}].pass=this.checked" class="w-4 h-4"></td>
+                    <td class="p-2 border text-center"><button onclick="kktp.splice(${i},1);renderKKTP()" class="text-rose-500">×</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderQuestionGrid() {
+            const container = document.getElementById('question-grid');
+            container.innerHTML = questions.map((q, i) => `
+                <div class="p-4 border rounded-xl bg-white shadow-sm relative group">
+                    <button onclick="deleteQuestion(${q.id})" class="absolute top-2 right-2 text-rose-300 hover:text-rose-600 font-bold opacity-0 group-hover:opacity-100 transition">Hapus</button>
+                    <div class="flex gap-2 mb-2">
+                        <input value="${q.label}" onchange="questions[${i}].label=this.value" class="w-16 border rounded p-1 font-bold">
+                        <select onchange="updateQuestionType(${i}, this.value)" class="flex-1 border rounded p-1 text-xs">
+                            <option value="PG" ${q.type==='PG'?'selected':''}>Pilihan Ganda</option>
+                            <option value="PGK" ${q.type==='PGK'?'selected':''}>PG Kompleks</option>
+                            <option value="BS" ${q.type==='BS'?'selected':''}>Benar/Salah</option>
+                            <option value="Uraian" ${q.type==='Uraian'?'selected':''}>Uraian</option>
+                        </select>
+                    </div>
+                    ${q.type !== 'Uraian' ? `
+                    <div class="flex flex-wrap gap-1 mb-2">
+                        ${(q.options || []).map(opt => `<button onclick="toggleKey(${i}, '${opt}')" class="w-7 h-7 border rounded text-[10px] font-bold ${(Array.isArray(q.key) ? q.key.includes(opt) : q.key === opt) ? 'bg-indigo-600 text-white' : 'bg-white'}">${opt}</button>`).join('')}
+                    </div>` : `<input type="number" placeholder="Max Skor" onchange="questions[${i}].max=Number(this.value)" value="${q.max||10}" class="w-full border p-1 mb-2 rounded text-xs">`}
+                    <input type="number" value="${q.weight}" placeholder="Bobot" onchange="questions[${i}].weight=Number(this.value)" class="w-full border rounded p-1 text-xs">
+                </div>
+            `).join('');
+        }
+
+        function renderAnswerTable() {
+            const head = document.getElementById('answer-header');
+            head.innerHTML = `<tr><th class="p-2 border text-left w-48 bg-slate-100">Nama Siswa</th>` + questions.map(q => `<th class="border p-2">${q.label}</th>`).join('') + `</tr>`;
+            const body = document.getElementById('answer-rows');
+            body.innerHTML = students.map((s, si) => `
+                <tr>
+                    <td class="p-1 border"><input value="${s.name}" onchange="students[${si}].name=this.value.toUpperCase();renderAnalysis()" class="w-full font-bold"></td>
+                    ${questions.map(q => {
+                        const ans = s.answers[q.id];
+                        let input = '';
+                        if(q.type === 'PG' || q.type === 'BS') input = `<select onchange="updateAns(${si},${q.id},this.value)" class="w-full text-center">${['', ...q.options].map(o => `<option value="${o}" ${ans===o?'selected':''}>${o}</option>`).join('')}</select>`;
+                        else if(q.type === 'PGK') input = `<div class="flex gap-0.5 justify-center">${q.options.map(o => `<button onclick="toggleAns(${si},${q.id},'${o}')" class="w-4 h-4 text-[7px] border ${(ans||[]).includes(o)?'bg-indigo-600 text-white':''}">${o}</button>`).join('')}</div>`;
+                        else input = `<input type="number" value="${ans||0}" onchange="updateAns(${si},${q.id},this.value)" class="w-full text-center">`;
+                        return `<td class="border p-1">${input}</td>`;
+                    }).join('')}
+                </tr>
+            `).join('');
+        }
+
+        function renderAnalysis() {
+            const rekap = document.getElementById('analysis-rekap-body');
+            const item = document.getElementById('analysis-item-body');
+            rekap.innerHTML = item.innerHTML = '';
+            
+            let scores = students.map(s => getStudentFinalScore(s));
+            let total = scores.reduce((a,b) => a+b, 0);
+            let avg = scores.length > 0 ? total / scores.length : 0;
+            let countPass = scores.filter(s => getKKTPInfo(s).pass).length;
+
+            document.getElementById('dash-avg').innerText = avg.toFixed(1);
+            document.getElementById('dash-high').innerText = scores.length > 0 ? Math.max(...scores).toFixed(1) : "-";
+            document.getElementById('dash-low').innerText = scores.length > 0 ? Math.min(...scores).toFixed(1) : "-";
+            document.getElementById('dash-pass').innerText = scores.length > 0 ? ((countPass/scores.length)*100).toFixed(0) + "%" : "-";
+
+            students.forEach((s, i) => {
+                const sc = scores[i];
+                const info = getKKTPInfo(sc);
+                rekap.innerHTML += `<tr><td class="border p-2 text-center">${i+1}</td><td class="border p-2 font-bold uppercase">${s.name}</td><td class="border p-2 text-center font-black">${sc.toFixed(1)}</td><td class="border p-2 italic">${info.label}</td></tr>`;
+            });
+
+            questions.forEach((q, i) => {
+                let pts = 0; students.forEach(s => pts += calculateItemScore(s.answers[q.id], q));
+                let p = (pts / (students.length * q.weight)) || 0;
+                item.innerHTML += `<tr><td class="border p-2 text-center">${i+1}</td><td class="border p-2 text-center font-bold">${q.label}</td><td class="border p-2 text-center font-mono">${p.toFixed(2)}</td><td class="border p-2">${p>0.7?'MUDAH':p<0.3?'SUKAR':'SEDANG'}</td></tr>`;
+            });
+        }
+
+        // --- OTHER HELPERS ---
+        function toggleKey(qi, l) { let q = questions[qi]; if(q.type==='PGK'){ q.key=Array.isArray(q.key)?q.key:[]; q.key=q.key.includes(l)?q.key.filter(x=>x!==l):[...q.key, l].sort(); } else { q.key=l; } renderAll(); }
+        function updateQuestionType(idx, t) { questions[idx].type=t; questions[idx].options=t==='BS'?['B','S']:['A','B','C','D']; questions[idx].key=t==='PGK'?[]:'A'; renderAll(); }
+        function deleteQuestion(id) { questions=questions.filter(q=>q.id!==id); renderAll(); }
+        function addQuestion() { questions.push({id:Date.now(), label:'S'+(questions.length+1), type:'PG', key:'A', weight:1, options:['A','B','C','D']}); renderAll(); }
+        function addKKTP() { kktp.push({min:0, max:0, label:'Baru', pass:false}); renderKKTP(); }
+        function addStudent() { students.push({id:Date.now(), name:'SISWA BARU', answers:{}}); renderAll(); }
+        function updateAns(si, qi, v) { students[si].answers[qi]=v; renderAnalysis(); }
+        function toggleAns(si, qi, l) { let a=students[si].answers[qi]||[]; students[si].answers[qi]=a.includes(l)?a.filter(x=>x!==l):[...a, l].sort(); renderAll(); }
         function closeProjectModal() { document.getElementById('modal-projects').classList.add('hidden'); }
-
-        // --- HELPERS ---
-        function updateQuestionType(idx, type) { 
-            questions[idx].type = type; 
-            questions[idx].options = type === 'BS' ? ['B', 'S'] : ['A', 'B', 'C', 'D']; 
-            questions[idx].key = type === 'PGK' ? [] : 'A'; 
-            renderAll(); 
-        }
-        function addOption(qIdx) { questions[qIdx].options.push(String.fromCharCode(65 + questions[qIdx].options.length)); renderAll(); }
-        function removeOption(qIdx) { if (questions[qIdx].options.length > 2) { questions[qIdx].options.pop(); renderAll(); } }
-        function toggleKey(qIdx, l) { 
-            let q = questions[qIdx]; 
-            if (q.type === 'PGK') { q.key = Array.isArray(q.key) ? q.key : []; q.key = q.key.includes(l) ? q.key.filter(x => x !== l) : [...q.key, l].sort(); } 
-            else { q.key = l; } 
-            renderAll(); 
-        }
-        function toggleAns(si, qi, l) { let a = students[si].answers[qi] || []; students[si].answers[qi] = a.includes(l) ? a.filter(x => x !== l) : [...a, l].sort(); renderAll(); }
-        function updateAns(si, qi, v) { students[si].answers[qi] = v; renderAnalysis(); }
-        function addQuestion() { questions.push({ id: Date.now(), label: 'S'+(questions.length+1), type: 'PG', key: 'A', weight: 1, options: ['A','B','C','D'] }); renderAll(); }
-        function deleteQuestion(id) { questions = questions.filter(q => q.id !== id); renderAll(); }
-        function addStudent() { students.push({ id: Date.now(), name: 'NAMA SISWA BARU', answers: {} }); renderAll(); }
 
         function handlePrint() { updatePrintInfo(); switchTab('tab-hasil'); setTimeout(() => { window.print(); }, 500); }
         function updatePrintInfo() {
-            const sch = document.getElementById('meta-school').value;
-            const sub = document.getElementById('meta-subject').value;
-            document.getElementById('print-school').innerText = sch;
-            document.getElementById('print-meta').innerText = `Mata Pelajaran: ${sub} | Tahun Ajaran: 2023/2024 | Semester: Ganjil`;
+            document.getElementById('print-school').innerText = document.getElementById('meta-school').value;
+            document.getElementById('print-meta').innerText = `Mata Pelajaran: ${document.getElementById('meta-subject').value} | Tahun Ajaran 2023/2024`;
             document.getElementById('sign-headmaster').innerText = document.getElementById('meta-headmaster').value;
             document.getElementById('sign-headmaster-nip').innerText = 'NIP. ' + document.getElementById('meta-headmaster-nip').value;
             document.getElementById('sign-teacher').innerText = document.getElementById('meta-teacher').value;
@@ -717,23 +489,12 @@
 
         function exportToExcel() {
             const wb = XLSX.utils.book_new();
-            const rekapData = students.map((s, idx) => ({ "No": idx + 1, "Nama Siswa": s.name, "Nilai": getStudentFinalScore(s).toFixed(1), "KKTP": getKKTPInfo(getStudentFinalScore(s)).label }));
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rekapData), "Rekap Nilai");
-            
-            const rawData = students.map(s => { let r = { "Nama": s.name }; questions.forEach(q => r[q.label] = s.answers[q.id]); r["TOTAL"] = getStudentFinalScore(s).toFixed(1); return r; });
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rawData), "Data Mentah");
-            
-            const itemData = questions.map(q => {
-                let tp = 0; students.forEach(s => tp += calculateItemScore(s.answers[q.id], q));
-                const p = (tp / (students.length * q.weight)) || 0;
-                return { "Kode": q.label, "Tipe": q.type, "Indeks P": p.toFixed(2), "Klasifikasi": p > 0.7 ? "MUDAH" : p < 0.3 ? "SUKAR" : "SEDANG" };
-            });
-            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(itemData), "Analisis Butir Soal");
-            
+            const rekap = students.map((s,i) => ({ "No": i+1, "Nama": s.name, "Nilai": getStudentFinalScore(s).toFixed(1), "KKTP": getKKTPInfo(getStudentFinalScore(s)).label }));
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rekap), "Rekap");
             XLSX.writeFile(wb, `Analisis_${document.getElementById('current-project-name').value}.xlsx`);
         }
 
-        window.onload = () => { renderAll(); switchTab('tab-identitas'); };
+        window.onload = () => { renderAll(); checkConnection(); };
     </script>
 </body>
 </html>
